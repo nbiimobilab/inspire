@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- News Header -->
+    <TextView
+        android:id="@+id/newsHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- News Image -->
+    <!--<ImageView-->
+    <!--android:id="@+id/newsStoryImageId"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="20sp"-->
+    <!--android:layout_weight="0.46"-->
+    <!--android:contentDescription="@string/image_description"-->
+    <!--android:src="@drawable/ic_launcher" />-->
+
+    <!-- Group The Dates -->
+    <!--<RelativeLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+    <!--</RelativeLayout>-->
+    <!-- News Creation Date -->
+    <!--<TextView-->
+        <!--android:id="@+id/newsCreationDateId"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceSmall" />-->
+
+    <!-- News Expiry Date -->
+    <!--<TextView-->
+        <!--android:id="@+id/newsExpiryDateId"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceSmall" />-->
+
+    <!-- News Content -->
+    <!--<TextView-->
+        <!--android:id="@+id/newsContentId"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.24"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
+
+</LinearLayout>

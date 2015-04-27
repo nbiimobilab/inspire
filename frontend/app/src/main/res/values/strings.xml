@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">INspire</string>
+
+    <string name="title_section1">Home</string>
+    <string name="title_section2">News &amp; Events</string>
+    <string name="title_section3">Services</string>
+    <string name="title_section4">Innovation Tips</string>
+    <string name="title_section5">Feedback</string>
+    <string name="title_section6">About Us</string>
+    <string name="title_section7">Contact Us</string>
+
+    <string name="title_tabnews">News</string>
+    <string name="title_tabevents">Events</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="welcome">Welcome to INspire</string>
+    <string name="copyright">NBII &#169; 2015</string>
+    <string name="powered">Powered by</string>
+
+    <string name="title_tab1">Innovation Marketplace</string>
+    <string name="title_tab2">M-Lab</string>
+    <string name="title_tab3">Technology Transfer</string>
+    <string name="title_tab4">Entrepreneurship &amp; Incubation</string>
+
+    <string name="action_share">Share</string>
+    <string name="action_search">Search</string>
+    <string name="action_nbii">NBII</string>
+    <string name="title_activity_services_tab">NBII Services</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_market">Innovation Marketplace</string>
+    <string name="title_activity_entrepreneurship">Entrepreneurship &amp; Incubation</string>
+    <string name="title_activity_tech">Technology Transfer</string>
+    <string name="title_activity_mlab">Mobile Lab</string>
+
+    <string name="marketmoto">Promoting Creativity and Innovation</string>
+    <string name="market">
+        The Innovation Marketplace (I’M) pillar promotes and stimulates innovation, business idea creation and entrepreneurial
+        mindsets in Namibia. The goal is to attract and motivate enthusiastic Namibians to develop and implement sustainable
+        innovative business ideas.
+    </string>
+
+    <string name="techmoto">Idea Exploration for Social and Economic Advancement </string>
+    <string name="tech">
+        The Research and Development (R&amp;D) pillar aims to commercialise local products and support the growth of established
+        private and public businesses through innovations in their business processes, products and services.
+    </string>
+
+    <string name="mlabmoto"> The Hub for Mobile Applications Development </string>
+    <string name="mlab">
+        The Mobile Lab offers a platform for students and professionals from industry, government and academia to engage
+        in mobile entrepreneurship with the aim of creating mobile applications to solve local challenges.
+    </string>
+
+    <string name="incumoto"></string>
+    <string name="incu">
+        The Entrepreneurship and Incubation (E&amp;I) pillar supports entrepreneurs with innovative ideas in establishing a
+        sustainable business. This support starts from the initial idea phase to the establishment of the business through
+        mentoring, training and business incubator services.
+    </string>
+    <string name="title_activity_main_tab">NBII Services</string>
+    <string name="title_activity_market_fragment">Innovation marketplace</string>
+    <string name="title_activity_mlab_fragment">Mobile lab</string>
+    <string name="title_activity_tech_fragment">Technology Transfer</string>
+    <string name="title_activity_entrepreneurship_fragment">Entrepreneurship &amp; incubation
+    </string>
+    <string name="title_activity_news">News &amp; Events</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="google">Device does not support Google Play Services</string>
+    <string name="news">News</string>
+    <string name="events">Events</string>
+    <string name="title_activity_events_fragment">Events</string>
+    <string name="title_activity_contact_us">Contact Us</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="gps">GPS is off, would you like to switch it on?</string>
+    <string name="us">Find us, here</string>
+
+    <string name="about">
+        Our mission is to proactively stimulate and support innovation, entrepreneurship and social upliftment through
+        exploring, researching and developing ideas, generating and incubating successful businesses and bridging the
+        technological divide for a globally competitive economy and inclusive society.
+    </string>
+
+    <string name="info">For more information, please contact us here. </string>
+
+    <string name="contact">
+        The Innovation Village 1-3 Glück street,
+    </string>
+    <string name="loc">Windhoek West, Windhoek</string>
+    <string name="poly">Polytechnic of Namibia</string>
+    <string name="box">Private Bag 13388</string>
+    <string name="tel"> T: 061-207-2885 | F: 061-207-2760 </string>
+    <string name="email"> E: nbic@polytechnic.edu.na</string>
+
+    <string name="web">
+        www.nbic.org.na
+    </string>
+
+    <string name="faceboook">
+        facebook.com/nbic.namibia
+    </string>
+    <string name="twitter">
+        twitter.com/nbic_namibia
+    </string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="aboutNbii">At glance</string>
+    <string name="vision">
+        To be recognised globally as a leading centre of excellence in transforming innovative ideas
+        into sustainable businesses and social solutions.
+    </string>
+
+    <string name="vis">Vision</string>
+    <string name="mis">Mission</string>
+    <string name="image_description">image_description</string>
+
+
+</resources>

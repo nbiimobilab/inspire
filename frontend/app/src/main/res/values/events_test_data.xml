@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="events_data_list">
+        <item>Events Item 1</item>
+        <item>Events Item 2</item>
+        <item>Events Item 3</item>
+        <item>Events Item 4</item>
+        <item>Events Item 5</item>
+        <item>Events Item 6</item>
+        <item>Events Item 7</item>
+        <item>Events Item 8</item>
+        <item>Events Item 9</item>
+        <item>Events Item 10</item>
+        <item>Events Item 11</item>
+        <item>Events Item 12</item>
+        <item>Events Item 13</item>
+        <item>Events Item 14</item>
+        <item>Events Item 15</item>
+        <item>Events Item 16</item>
+        <item>Events Item 17</item>
+        <item>Events Item 18</item>
+        <item>Events Item 19</item>
+        <item>Events Item 20</item>
+        <item>Events Item 21</item>
+        <item>Events Item 22</item>
+        <item>Events Item 23</item>
+        <item>Events Item 24</item>
+        <item>Events Item 25</item>
+        <item>Events Item 26</item>
+        <item>Events Item 27</item>
+        <item>Events Item 28</item>
+        <item>Events Item 29</item>
+        <item>Events Item 30</item>
+    </string-array>
+</resources>
