@@ -1,5 +1,6 @@
 package app.nbii.na.inspire;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,6 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import app.nbii.na.inspire.DataModel.Parser;
+import app.nbii.na.inspire.DataModel.StoryCollection;
 
 /**
  * Created by Lameck on 24/03/2015.
@@ -37,7 +43,6 @@ public class NewsFragment extends Fragment {
 
     // List view
     private ListView newsStoryList;
-    private String[] strListView = new String[] {"nothing here"};
     // Array adapter.
 //    ArrayAdapter<String> adapter;
 
@@ -46,10 +51,15 @@ public class NewsFragment extends Fragment {
         // News news list object.
 //        newsList = new ArrayList<HashMap<String, String>>();
 
+        StoryCollection stories = Parser.loadAsset((Context) getActivity(), "news_feed.json");
+        ArrayList<String> titleList = stories.titles();
         newsStoryList = (ListView) rootView.findViewById(android.R.id.list);
         //strListView = getResources().getStringArray(R.array.news_data_list);
 
-        ArrayAdapter<String> objAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, strListView);
+        ArrayAdapter<String> objAdapter = new ArrayAdapter<String>(
+                this.getActivity(),
+                android.R.layout.simple_list_item_1,
+                titleList);
 
         newsStoryList.setAdapter(objAdapter);
 

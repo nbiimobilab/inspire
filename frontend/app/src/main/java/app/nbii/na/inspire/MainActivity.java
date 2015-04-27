@@ -25,9 +25,6 @@ import com.google.android.gms.ads.AdView;
 
 import java.io.InputStream;
 
-import app.nbii.na.inspire.DataModel.Parser;
-import app.nbii.na.inspire.DataModel.StoryCollection;
-
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks{
@@ -69,8 +66,6 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
-        StoryCollection collection = Parser.loadAsset(this, "news_feed.json");
     }
 
 

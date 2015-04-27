@@ -39,4 +39,12 @@ public class StoryCollection {
     public int length() {
         return stories.size();
     }
+
+    public ArrayList<String> titles() {
+        ArrayList<String> result = new ArrayList<>();
+        for(Story story : stories) {
+            result.add(story.title);
+        }
+        return result;
+    }
 }
