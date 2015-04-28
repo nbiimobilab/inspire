@@ -27,6 +27,17 @@ public class StoryCollection {
         return new StoryCollection(list);
     }
 
+    public static StoryCollection fromString(String string) {
+        try {
+            JSONArray array = new JSONArray(string);
+            return fromJSON(array);
+        }
+        catch(JSONException e) {
+            Log.e(Debug.TAG, "Exception parsing JSON array:" + e);
+            return StoryCollection.none();
+        }
+    }
+
     public static StoryCollection none() {
         ArrayList<Story> list = new ArrayList<>();
         return new StoryCollection(list);

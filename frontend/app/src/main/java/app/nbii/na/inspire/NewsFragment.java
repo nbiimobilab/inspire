@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import app.nbii.na.inspire.DataModel.Parser;
+import app.nbii.na.inspire.DataModel.Loader;
 import app.nbii.na.inspire.DataModel.StoryCollection;
 
 /**
@@ -20,7 +20,7 @@ public class NewsFragment extends Fragment implements AdapterView.OnItemClickLis
     private StoryCollection stories = null;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        stories = Parser.loadAsset(getActivity(), "news_feed.json");
+        stories = Loader.loadAsset(getActivity(), "news_feed.json");
 
         ArrayAdapter<String> objAdapter = new ArrayAdapter<String>(
                 this.getActivity(),

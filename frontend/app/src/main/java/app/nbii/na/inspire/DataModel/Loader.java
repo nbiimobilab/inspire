@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,18 +14,7 @@ import app.nbii.na.inspire.Debug;
 /**
  * Created by abrie on 4/27/15.
  */
-public class Parser {
-    public static StoryCollection process(String string) {
-        try {
-            JSONArray array = new JSONArray(string);
-            return StoryCollection.fromJSON(array);
-        }
-        catch(JSONException e) {
-            Log.e(Debug.TAG, "Exception parsing JSON array:" + e);
-            return StoryCollection.none();
-        }
-    }
-
+public class Loader {
     public static String inputStreamToString(InputStream stream)
             throws IOException {
 
@@ -45,11 +31,10 @@ public class Parser {
 
     public static StoryCollection loadAsset(Context context, String filename) {
         try {
-            AssetManager assetManager = context.getAssets();
-            InputStream stream = assetManager.open(filename, AssetManager.ACCESS_BUFFER);
-            return process(inputStreamToString(stream));
+            InputStream stream = context.getAssets().open(filename, AssetManager.ACCESS_BUFFER);
+            return StoryCollection.fromString(inputStreamToString(stream));
         } catch (IOException e) {
-            Log.e(Debug.TAG, "IOException while processing:"+filename);
+            Log.e(Debug.TAG, "IOException while processing:" + filename);
             return StoryCollection.none();
         }
     }
