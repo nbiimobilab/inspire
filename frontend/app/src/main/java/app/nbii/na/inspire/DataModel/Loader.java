@@ -35,6 +35,15 @@ public class Loader {
         return responseStrBuilder.toString();
     }
 
+    public static URL buildURL(Context context, int stringResource) {
+        try {
+            return new URL(context.getString(R.string.active_url) + context.getString(stringResource));
+        } catch( MalformedURLException e) {
+            Log.e(Debug.TAG, "Bad url:", e);
+            return null;
+        }
+    }
+
     public void loadLocalStoryCollection(
             Context context,
             String filename,
@@ -61,15 +70,11 @@ public class Loader {
         }
     }
 
-    private EventCollection loadRemoteEventCollection( String filename) {
+    private EventCollection loadRemoteEventCollection(URL url) {
         try {
-            URL url = new URL(R.string.news_server+"/"+filename);
+            Log.i(Debug.TAG, "Loading event collection from:" + url.toExternalForm());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             return EventCollection.fromString(inputStreamToString(conn.getInputStream()));
-        }
-        catch(MalformedURLException e) {
-            Log.e(Debug.TAG, "Malformed URL:", e);
-            return EventCollection.none();
         }
         catch(IOException e) {
             Log.e(Debug.TAG, "IOException", e);
@@ -77,15 +82,11 @@ public class Loader {
         }
     }
 
-    private StoryCollection loadRemoteStoryCollection( String filename) {
+    private StoryCollection loadRemoteStoryCollection( URL  url) {
         try {
-            URL url = new URL(R.string.news_server+"/"+filename);
+            Log.i(Debug.TAG, "Loading story collection from:" + url.toExternalForm());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             return StoryCollection.fromString(inputStreamToString(conn.getInputStream()));
-        }
-        catch(MalformedURLException e) {
-            Log.e(Debug.TAG, "Malformed URL:", e);
-            return StoryCollection.none();
         }
         catch(IOException e) {
             Log.e(Debug.TAG, "IOException", e);
@@ -94,14 +95,13 @@ public class Loader {
     }
 
     public void asyncLoadRemoteEventCollection(
-            final Context context,
-            final String filename,
+            final URL url,
             final EventCollectionListener listener) {
 
         AsyncTask asyncTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
-                EventCollection eventCollection = loadRemoteEventCollection(filename);
+                EventCollection eventCollection = loadRemoteEventCollection(url);
                 listener.onEventCollection(eventCollection);
                 return null;
             }
@@ -111,14 +111,13 @@ public class Loader {
     }
 
     public void asyncLoadRemoteStoryCollection(
-            final Context context,
-            final String filename,
+            final URL url,
             final StoryCollectionListener listener) {
 
         AsyncTask asyncTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
-                StoryCollection storyCollection = loadRemoteStoryCollection(filename);
+                StoryCollection storyCollection = loadRemoteStoryCollection(url);
                 listener.onStoryCollection(storyCollection);
                 return null;
             }

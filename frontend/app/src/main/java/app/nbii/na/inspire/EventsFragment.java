@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.net.URL;
+
 import app.nbii.na.inspire.DataModel.EventCollection;
 import app.nbii.na.inspire.DataModel.Loader;
 
@@ -25,7 +27,8 @@ public class EventsFragment
         eventsListView = (ListView) rootView.findViewById(android.R.id.list);
 
         Loader loader = new Loader();
-        loader.asyncLoadRemoteEventCollection(getActivity(), "events_feed.json", this);
+        URL url = Loader.buildURL(getActivity(), R.string.active_events_feed);
+        loader.asyncLoadRemoteEventCollection(url, this);
 
         return rootView;
     }

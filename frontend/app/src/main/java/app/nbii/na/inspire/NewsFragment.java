@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.net.URL;
+
 import app.nbii.na.inspire.DataModel.Loader;
 import app.nbii.na.inspire.DataModel.StoryCollection;
 
@@ -28,7 +30,8 @@ public class NewsFragment
         storyListView = (ListView) rootView.findViewById(android.R.id.list);
 
         Loader loader = new Loader();
-        loader.asyncLoadRemoteStoryCollection(getActivity(), "news_feed.json", this);
+        URL url = Loader.buildURL(getActivity(), R.string.active_news_feed);
+        loader.asyncLoadRemoteStoryCollection(url, this);
 
         return rootView;
     }

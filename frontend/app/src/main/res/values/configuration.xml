@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="news_server">http://192.168.1.22:8000</string>
+    <string name="dev_url">http://192.168.1.22:8000/</string>
+    <string name="dev_events_feed">events_feed.json</string>
+    <string name="dev_news_feed">news_feed.json</string>
+
+    <string name="production_url">http://nbiimobilab.com/nbii_android_api/include/</string>
+    <string name="production_events_feed">nbii_events_feeds.php</string>
+    <string name="production_news_feed">nbii_news_feeds.php</string>
+
+    <string name="active_url">@string/dev_url</string>
+    <string name="active_events_feed">@string/dev_events_feed</string>
+    <string name="active_news_feed">@string/dev_news_feed</string>
 </resources>
