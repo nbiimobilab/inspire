@@ -16,23 +16,30 @@ import app.nbii.na.inspire.DataModel.StoryCollection;
 /**
  * Created by Lameck on 24/03/2015.
  */
-public class NewsFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class NewsFragment extends Fragment implements AdapterView.OnItemClickListener, Loader.StoryCollectionListener {
     private StoryCollection stories = null;
+    private ListView newsStoryList = null;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        stories = Loader.loadAsset(getActivity(), "news_feed.json");
+        View rootView = inflater.inflate(R.layout.fragment_news, container, false);
+        newsStoryList = (ListView) rootView.findViewById(android.R.id.list);
+
+        Loader loader = new Loader();
+        loader.asyncLoadRemoteStoryCollection(getActivity(), "news_feed.json", this);
+
+        return rootView;
+    }
+
+    private void applyStoryCollection(StoryCollection storyCollection) {
+        stories = storyCollection;
 
         ArrayAdapter<String> objAdapter = new ArrayAdapter<String>(
                 this.getActivity(),
                 android.R.layout.simple_list_item_1,
                 stories.titles());
 
-        View rootView = inflater.inflate(R.layout.fragment_news, container, false);
-        ListView newsStoryList = (ListView) rootView.findViewById(android.R.id.list);
         newsStoryList.setAdapter(objAdapter);
         newsStoryList.setOnItemClickListener(this);
-
-        return rootView;
     }
 
     @Override
@@ -42,5 +49,15 @@ public class NewsFragment extends Fragment implements AdapterView.OnItemClickLis
         i.putExtra(Single_News_Story.HEADER, stories.get(position).title);
         i.putExtra(Single_News_Story.CREATE_DATE, stories.get(position).date_added);
         startActivity(i);
+    }
+
+    @Override
+    public void onStoryCollection(final StoryCollection storyCollection) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                applyStoryCollection(storyCollection);
+            }
+        });
     }
 }
