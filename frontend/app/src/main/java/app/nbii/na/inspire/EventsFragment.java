@@ -8,21 +8,46 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import app.nbii.na.inspire.DataModel.EventCollection;
+import app.nbii.na.inspire.DataModel.Loader;
 
-public class EventsFragment extends Fragment {
-    private ListView eventsStoryList;
-    private String[] strListView = new String[] {"nothing here"};
+
+public class EventsFragment
+        extends Fragment
+        implements Loader.EventCollectionListener
+{
+    private EventCollection events;
+    private ListView eventsListView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.events_fragment, container, false);
 
-        eventsStoryList = (ListView) rootView.findViewById(android.R.id.list);
-        //strListView = getResources().getStringArray(R.array.news_data_list);
+        eventsListView = (ListView) rootView.findViewById(android.R.id.list);
 
-        ArrayAdapter<String> objAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, strListView);
-
-        eventsStoryList.setAdapter(objAdapter);
+        Loader loader = new Loader();
+        loader.asyncLoadRemoteEventCollection(getActivity(), "events_feed.json", this);
 
         return rootView;
+    }
+
+    private void applyEventCollection(EventCollection eventCollection) {
+        events = eventCollection;
+
+        ArrayAdapter<String> objAdapter = new ArrayAdapter<String>(
+                this.getActivity(),
+                android.R.layout.simple_list_item_1,
+                events.titles());
+
+        eventsListView.setAdapter(objAdapter);
+    }
+
+    @Override
+    public void onEventCollection(final EventCollection eventCollection) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                applyEventCollection(eventCollection);
+            }
+        });
     }
 }

@@ -48,6 +48,35 @@ public class Loader {
         }
     }
 
+    public void loadLocalEventCollection(
+            Context context,
+            String filename,
+            EventCollectionListener listener) {
+
+        try {
+            InputStream stream = context.getAssets().open(filename, AssetManager.ACCESS_BUFFER);
+            listener.onEventCollection(EventCollection.fromString(inputStreamToString(stream)));
+        } catch (IOException e) {
+            Log.e(Debug.TAG, "IOException while processing:" + filename);
+        }
+    }
+
+    private EventCollection loadRemoteEventCollection( String filename) {
+        try {
+            URL url = new URL(R.string.news_server+"/"+filename);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            return EventCollection.fromString(inputStreamToString(conn.getInputStream()));
+        }
+        catch(MalformedURLException e) {
+            Log.e(Debug.TAG, "Malformed URL:", e);
+            return EventCollection.none();
+        }
+        catch(IOException e) {
+            Log.e(Debug.TAG, "IOException", e);
+            return EventCollection.none();
+        }
+    }
+
     private StoryCollection loadRemoteStoryCollection( String filename) {
         try {
             URL url = new URL(R.string.news_server+"/"+filename);
@@ -62,6 +91,23 @@ public class Loader {
             Log.e(Debug.TAG, "IOException", e);
             return StoryCollection.none();
         }
+    }
+
+    public void asyncLoadRemoteEventCollection(
+            final Context context,
+            final String filename,
+            final EventCollectionListener listener) {
+
+        AsyncTask asyncTask = new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                EventCollection eventCollection = loadRemoteEventCollection(filename);
+                listener.onEventCollection(eventCollection);
+                return null;
+            }
+        };
+
+        asyncTask.execute();
     }
 
     public void asyncLoadRemoteStoryCollection(
@@ -83,6 +129,10 @@ public class Loader {
 
     public interface StoryCollectionListener {
         void onStoryCollection(StoryCollection storyCollection);
+    }
+
+    public interface EventCollectionListener {
+        void onEventCollection(EventCollection eventCollection);
     }
 
     public void Loader(Context context) {
