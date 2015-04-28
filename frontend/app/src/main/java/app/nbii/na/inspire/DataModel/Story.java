@@ -7,9 +7,9 @@ import org.json.JSONObject;
  * Created by abrie on 4/27/15.
  */
 public class Story {
-    final String title;
-    final String content;
-    final String date_added;
+    public final String title;
+    public final String content;
+    public final String date_added;
 
     public static Story fromJSON(JSONObject json) throws JSONException {
         return new Story(

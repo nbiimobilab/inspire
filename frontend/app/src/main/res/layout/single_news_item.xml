@@ -30,7 +30,7 @@
     <!--</RelativeLayout>-->
     <!-- News Creation Date -->
     <TextView
-    android:id="@+id/newsCreationDateId"
+    android:id="@+id/newsCreationDate"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -44,7 +44,7 @@
 
     <!-- News Content -->
     <TextView
-    android:id="@+id/newsContentId"
+    android:id="@+id/newsContent"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="0.24"

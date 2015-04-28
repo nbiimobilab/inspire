@@ -40,6 +40,10 @@ public class StoryCollection {
         return stories.size();
     }
 
+    public Story get(int index) {
+        return stories.get(index);
+    }
+
     public ArrayList<String> titles() {
         ArrayList<String> result = new ArrayList<>();
         for(Story story : stories) {
