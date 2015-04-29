@@ -15,7 +15,7 @@ In the file is a section as follows, which points to a test server:
 
 Change as follows in order to point to the production server (nbiimobilab.com):
 
-```xml
 <string name="active_server">@string/production_server</string>
 <string name="active_events_feed">@string/production_events_feed</string>
 <string name="active_news_feed">@string/production_news_feed</string>
+```
