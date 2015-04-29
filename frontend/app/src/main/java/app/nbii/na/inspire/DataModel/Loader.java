@@ -35,7 +35,7 @@ public class Loader {
 
     public static URL buildURL(Context context, int stringResource) {
         try {
-            return new URL(context.getString(R.string.active_url) + context.getString(stringResource));
+            return new URL(context.getString(R.string.active_server) + context.getString(stringResource));
         } catch( MalformedURLException e) {
             Log.e(Debug.TAG, "Bad url:", e);
             return null;
