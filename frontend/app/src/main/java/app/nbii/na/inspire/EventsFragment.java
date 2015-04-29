@@ -28,7 +28,7 @@ public class EventsFragment
 
         Loader loader = new Loader();
         URL url = Loader.buildURL(getActivity(), R.string.active_events_feed);
-        loader.asyncLoadRemoteEventCollection(url, this);
+        loader.loadEventCollectionAsync(url, this);
 
         return rootView;
     }

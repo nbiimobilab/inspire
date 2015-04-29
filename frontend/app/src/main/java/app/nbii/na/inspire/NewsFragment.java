@@ -31,7 +31,7 @@ public class NewsFragment
 
         Loader loader = new Loader();
         URL url = Loader.buildURL(getActivity(), R.string.active_news_feed);
-        loader.asyncLoadRemoteStoryCollection(url, this);
+        loader.loadStoryCollectionAsync(url, this);
 
         return rootView;
     }

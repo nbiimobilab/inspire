@@ -69,7 +69,7 @@ public class Loader {
         }
     }
 
-    public void asyncLoadRemoteEventCollection(
+    public void loadEventCollectionAsync(
             final URL url,
             final EventCollectionListener listener) {
 
@@ -85,7 +85,7 @@ public class Loader {
         asyncTask.execute();
     }
 
-    public void asyncLoadRemoteStoryCollection(
+    public void loadStoryCollectionAsync(
             final URL url,
             final StoryCollectionListener listener) {
 
