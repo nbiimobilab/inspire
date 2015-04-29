@@ -1,11 +1,14 @@
 package app.nbii.na.inspire.DataModel;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -53,6 +56,17 @@ public class StoryCollection {
         }
     }
 
+    public static StoryCollection fromAssetFile(Context context, String filename ) {
+        try {
+            InputStream stream = context.getAssets().open(filename, AssetManager.ACCESS_BUFFER);
+            return fromString(Loader.inputStreamToString(stream));
+        }
+        catch (IOException e) {
+            Log.e(Debug.TAG, "IOException while processing:" + filename);
+            return StoryCollection.none();
+        }
+    }
+
     public static StoryCollection none() {
         ArrayList<Story> list = new ArrayList<>();
         return new StoryCollection(list);
@@ -76,5 +90,9 @@ public class StoryCollection {
             result.add(story.title);
         }
         return result;
+    }
+
+    public interface StoryCollectionListener {
+        void onStoryCollection(StoryCollection storyCollection);
     }
 }

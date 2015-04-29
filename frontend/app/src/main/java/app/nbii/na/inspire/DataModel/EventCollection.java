@@ -1,11 +1,14 @@
 package app.nbii.na.inspire.DataModel;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -53,6 +56,17 @@ public class EventCollection {
         }
     }
 
+    public static EventCollection fromAssetFile(Context context, String filename ) {
+        try {
+            InputStream stream = context.getAssets().open(filename, AssetManager.ACCESS_BUFFER);
+            return fromString(Loader.inputStreamToString(stream));
+        }
+        catch (IOException e) {
+            Log.e(Debug.TAG, "IOException while processing:" + filename);
+            return EventCollection.none();
+        }
+    }
+
     public static EventCollection none() {
         ArrayList<Event> list = new ArrayList<>();
         return new EventCollection(list);
@@ -76,5 +90,9 @@ public class EventCollection {
             result.add(event.name);
         }
         return result;
+    }
+
+    public interface EventCollectionListener {
+        void onEventCollection(EventCollection eventCollection);
     }
 }

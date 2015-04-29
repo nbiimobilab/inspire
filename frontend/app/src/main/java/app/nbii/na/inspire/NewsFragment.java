@@ -20,7 +20,7 @@ import app.nbii.na.inspire.DataModel.StoryCollection;
  */
 public class NewsFragment
         extends Fragment
-        implements AdapterView.OnItemClickListener, Loader.StoryCollectionListener {
+        implements AdapterView.OnItemClickListener, StoryCollection.StoryCollectionListener {
 
     private StoryCollection stories = null;
     private ListView storyListView = null;

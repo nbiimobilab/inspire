@@ -16,7 +16,7 @@ import app.nbii.na.inspire.DataModel.Loader;
 
 public class EventsFragment
         extends Fragment
-        implements Loader.EventCollectionListener
+        implements EventCollection.EventCollectionListener
 {
     private EventCollection events;
     private ListView eventsListView;

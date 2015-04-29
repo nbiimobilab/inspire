@@ -1,7 +1,6 @@
 package app.nbii.na.inspire.DataModel;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -43,70 +42,58 @@ public class Loader {
         }
     }
 
-    public void loadLocalStoryCollection(
+    public void loadEventCollection(
             Context context,
             String filename,
-            StoryCollectionListener listener) {
-
-        try {
-            InputStream stream = context.getAssets().open(filename, AssetManager.ACCESS_BUFFER);
-            listener.onStoryCollection(StoryCollection.fromString(inputStreamToString(stream)));
-        } catch (IOException e) {
-            Log.e(Debug.TAG, "IOException while processing:" + filename);
-        }
+            EventCollection.EventCollectionListener listener) {
+        listener.onEventCollection(EventCollection.fromAssetFile(context, filename));
     }
 
-    public void loadLocalEventCollection(
-            Context context,
-            String filename,
-            EventCollectionListener listener) {
-
-        try {
-            InputStream stream = context.getAssets().open(filename, AssetManager.ACCESS_BUFFER);
-            listener.onEventCollection(EventCollection.fromString(inputStreamToString(stream)));
-        } catch (IOException e) {
-            Log.e(Debug.TAG, "IOException while processing:" + filename);
-        }
+    public void loadEventCollection(URL url, EventCollection.EventCollectionListener listener) {
+        EventCollection eventCollection = EventCollection.fromURL(url);
+        listener.onEventCollection(eventCollection);
     }
 
     public void loadEventCollectionAsync(
             final URL url,
-            final EventCollectionListener listener) {
+            final EventCollection.EventCollectionListener callback) {
 
         AsyncTask asyncTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
-                EventCollection eventCollection = EventCollection.fromURL(url);
-                listener.onEventCollection(eventCollection);
+                loadEventCollection(url, callback);
                 return null;
             }
         };
 
         asyncTask.execute();
+    }
+
+    public void loadStoryCollection(URL url, StoryCollection.StoryCollectionListener listener) {
+        StoryCollection storyCollection = StoryCollection.fromURL(url);
+        listener.onStoryCollection(storyCollection);
+    }
+
+    public void loadStoryCollection(
+            Context context,
+            String filename,
+            StoryCollection.StoryCollectionListener listener) {
+        listener.onStoryCollection(StoryCollection.fromAssetFile(context, filename));
     }
 
     public void loadStoryCollectionAsync(
             final URL url,
-            final StoryCollectionListener listener) {
+            final StoryCollection.StoryCollectionListener callback) {
 
         AsyncTask asyncTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
-                StoryCollection storyCollection = StoryCollection.fromURL(url);
-                listener.onStoryCollection(storyCollection);
+                loadStoryCollection(url, callback);
                 return null;
             }
         };
 
         asyncTask.execute();
-    }
-
-    public interface StoryCollectionListener {
-        void onStoryCollection(StoryCollection storyCollection);
-    }
-
-    public interface EventCollectionListener {
-        void onEventCollection(EventCollection eventCollection);
     }
 
     public void Loader(Context context) {
