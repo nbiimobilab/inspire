@@ -5,6 +5,9 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import app.nbii.na.inspire.Debug;
@@ -34,6 +37,18 @@ public class EventCollection {
         }
         catch(JSONException e) {
             Log.e(Debug.TAG, "Exception parsing JSON array:" + e);
+            return EventCollection.none();
+        }
+    }
+
+    public static EventCollection fromURL(URL url) {
+        try {
+            Log.i(Debug.TAG, "Loading event collection from:" + url.toExternalForm());
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            return fromString(Loader.inputStreamToString(conn.getInputStream()));
+        }
+        catch(IOException e) {
+            Log.e(Debug.TAG, "IOException", e);
             return EventCollection.none();
         }
     }

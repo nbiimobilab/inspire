@@ -5,6 +5,9 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import app.nbii.na.inspire.Debug;
@@ -34,6 +37,18 @@ public class StoryCollection {
         }
         catch(JSONException e) {
             Log.e(Debug.TAG, "Exception parsing JSON array:" + e);
+            return StoryCollection.none();
+        }
+    }
+
+    public static StoryCollection fromURL(URL url) {
+        try {
+            Log.i(Debug.TAG, "Loading story collection from:" + url.toExternalForm());
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            return fromString(Loader.inputStreamToString(conn.getInputStream()));
+        }
+        catch(IOException e) {
+            Log.e(Debug.TAG, "IOException", e);
             return StoryCollection.none();
         }
     }

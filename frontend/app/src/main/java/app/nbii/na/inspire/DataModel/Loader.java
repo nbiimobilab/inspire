@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -70,30 +69,6 @@ public class Loader {
         }
     }
 
-    private EventCollection loadRemoteEventCollection(URL url) {
-        try {
-            Log.i(Debug.TAG, "Loading event collection from:" + url.toExternalForm());
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            return EventCollection.fromString(inputStreamToString(conn.getInputStream()));
-        }
-        catch(IOException e) {
-            Log.e(Debug.TAG, "IOException", e);
-            return EventCollection.none();
-        }
-    }
-
-    private StoryCollection loadRemoteStoryCollection( URL  url) {
-        try {
-            Log.i(Debug.TAG, "Loading story collection from:" + url.toExternalForm());
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            return StoryCollection.fromString(inputStreamToString(conn.getInputStream()));
-        }
-        catch(IOException e) {
-            Log.e(Debug.TAG, "IOException", e);
-            return StoryCollection.none();
-        }
-    }
-
     public void asyncLoadRemoteEventCollection(
             final URL url,
             final EventCollectionListener listener) {
@@ -101,7 +76,7 @@ public class Loader {
         AsyncTask asyncTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
-                EventCollection eventCollection = loadRemoteEventCollection(url);
+                EventCollection eventCollection = EventCollection.fromURL(url);
                 listener.onEventCollection(eventCollection);
                 return null;
             }
@@ -117,7 +92,7 @@ public class Loader {
         AsyncTask asyncTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
-                StoryCollection storyCollection = loadRemoteStoryCollection(url);
+                StoryCollection storyCollection = StoryCollection.fromURL(url);
                 listener.onStoryCollection(storyCollection);
                 return null;
             }
